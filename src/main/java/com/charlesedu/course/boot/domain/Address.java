@@ -3,8 +3,10 @@ package com.charlesedu.course.boot.domain;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.Table;
 
 @SuppressWarnings("serial")
+@Table(name = "TB_ADDRESS")
 public class Address extends AbstractEntity<Long> {
 	@Column(nullable = false)
 	private String publicArea;
