@@ -17,7 +17,7 @@ public class Address extends AbstractEntity<Long> {
 	@Column(nullable = false)
 	private String city;
 
-	@Column(nullable = false, length = 2)
+	@Column(name = "federative_unit", nullable = false, length = 2)
 	@Enumerated(EnumType.STRING)
 	private FederativeUnit federativaUnit;
 

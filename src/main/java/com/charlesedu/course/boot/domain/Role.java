@@ -1,9 +1,12 @@
 package com.charlesedu.course.boot.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -16,6 +19,9 @@ public class Role extends AbstractEntity<Long> {
 	@ManyToOne
 	@JoinColumn(name = "id_department_fk")
 	private Department deparment;
+
+	@OneToMany(mappedBy = "role")
+	private List<Employee> employees;
 
 	public String getName() {
 		return name;
@@ -31,5 +37,9 @@ public class Role extends AbstractEntity<Long> {
 
 	public void setDeparment(Department deparment) {
 		this.deparment = deparment;
+	}
+
+	public List<Employee> getEmployees() {
+		return employees;
 	}
 }
