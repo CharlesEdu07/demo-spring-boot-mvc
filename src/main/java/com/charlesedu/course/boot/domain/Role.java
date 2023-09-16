@@ -1,22 +1,22 @@
 package com.charlesedu.course.boot.domain;
 
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "TB_DEPARTMENTS")
-public class Department extends AbstractEntity<Long> {
+@Table(name = "TB_ROLES")
+public class Role extends AbstractEntity<Long> {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Column(name = "name", nullable = false, unique = true, length = 60)
 	private String name;
 	
-	@OneToMany(mappedBy = "department")
-	private List<Role> roles;
+	@ManyToOne
+	@JoinColumn(name = "id_department_fk")
+	private Department deparment;
 
 	public String getName() {
 		return name;
@@ -26,7 +26,11 @@ public class Department extends AbstractEntity<Long> {
 		this.name = name;
 	}
 
-	public List<Role> getRoles() {
-		return roles;
+	public Department getDeparment() {
+		return deparment;
+	}
+
+	public void setDeparment(Department deparment) {
+		this.deparment = deparment;
 	}
 }
