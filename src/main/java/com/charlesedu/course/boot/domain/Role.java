@@ -6,14 +6,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "TB_ROLES")
 public class Role extends AbstractEntity<Long> {
-	private static final long serialVersionUID = 1L;
-	
 	@Column(name = "name", nullable = false, unique = true, length = 60)
 	private String name;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_department_fk")
 	private Department deparment;
