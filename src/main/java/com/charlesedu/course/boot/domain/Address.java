@@ -1,5 +1,7 @@
 package com.charlesedu.course.boot.domain;
 
+import com.charlesedu.course.boot.domain.enums.FederativeUnit;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

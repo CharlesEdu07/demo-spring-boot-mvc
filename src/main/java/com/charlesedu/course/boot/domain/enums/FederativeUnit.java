@@ -1,4 +1,4 @@
-package com.charlesedu.course.boot.domain;
+package com.charlesedu.course.boot.domain.enums;
 
 public enum FederativeUnit {
 	AC("AC", "Acre"), AL("AL", "Alagoas"), AM("AM", "Amazonas"), BA("BA", "Bahia"), CE("CE", "Ceará"),
