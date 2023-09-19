@@ -18,7 +18,7 @@ public class Role extends AbstractEntity<Long> {
 
 	@ManyToOne
 	@JoinColumn(name = "id_department_fk")
-	private Department deparment;
+	private Department department;
 
 	@OneToMany(mappedBy = "role")
 	private List<Employee> employees;
@@ -32,11 +32,11 @@ public class Role extends AbstractEntity<Long> {
 	}
 
 	public Department getDeparment() {
-		return deparment;
+		return department;
 	}
 
-	public void setDeparment(Department deparment) {
-		this.deparment = deparment;
+	public void setDeparment(Department department) {
+		this.department = department;
 	}
 
 	public List<Employee> getEmployees() {

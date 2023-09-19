@@ -3,11 +3,13 @@ package com.charlesedu.course.boot.domain;
 import com.charlesedu.course.boot.domain.enums.FederativeUnit;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 
 @SuppressWarnings("serial")
+@Entity
 @Table(name = "TB_ADDRESS")
 public class Address extends AbstractEntity<Long> {
 	@Column(nullable = false)
