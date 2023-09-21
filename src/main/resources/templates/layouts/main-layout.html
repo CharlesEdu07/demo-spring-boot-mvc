@@ -20,20 +20,20 @@
 </head>
 
 <body>
-	<header>Header</header>
-	<div>
+	<header th:replace="~{fragments/header :: main-header}">Header</header>
+	<div class="layout-main">
 		<aside>
-			<nav>
+			<nav th:replace="~{fragments/sidebar :: nav-sidebar}">
 				<span>Menu</span>
 			</nav>
 		</aside>
-		<section>
+		<section layout:fragment="main-body">
 			<div>
 				Conteudo das paginas
 			</div>
 		</section>
 	</div>
-	<footer>
+	<footer th:replace="~{fragments/footer :: main-footer}">
 		<div>Footer</div>
 	</footer>
 	<script src="/webjars/jquery/jquery.min.js"></script>
