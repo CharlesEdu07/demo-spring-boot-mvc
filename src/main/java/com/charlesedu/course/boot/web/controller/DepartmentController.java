@@ -1,21 +1,54 @@
 package com.charlesedu.course.boot.web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.charlesedu.course.boot.domain.Department;
+import com.charlesedu.course.boot.service.DepartmentService;
+
 @Controller
-@RequestMapping("/departamentos")
+@RequestMapping("/departments")
 public class DepartmentController {
-	
-	@GetMapping("/cadastrar")
-	public String signUp() {
-		return "/departamento/cadastro";
+
+	@Autowired
+	private DepartmentService service;
+
+	@GetMapping("/register")
+	public String register(Department department) {
+		return "/department/register";
+	} 
+
+	@GetMapping("/list")
+	public String list(ModelMap model) {
+		model.addAttribute("departments", service.findAll());
+		
+		return "/department/list";
+	}
+
+	@PostMapping("/save")
+	public String save(Department department) {
+		service.save(department);
+
+		return "redirect:/departments/register";
 	}
 	
-	@GetMapping("/listar")
-	public String list() {
-		return "/departamento/lista";
+	@GetMapping("/update/{id}")
+	public String preUpdate(@PathVariable("id") Long id, ModelMap model) {
+		model.addAttribute("department", service.findById(id));
+		
+		return "department/register";
+	}
+	
+	@PostMapping("/update")
+	public String update(Department department) {
+		service.update(department);
+		
+		return "redirect:/departments/register";
 	}
 	
 }
