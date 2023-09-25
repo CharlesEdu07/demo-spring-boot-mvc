@@ -38,7 +38,9 @@ public abstract class AbstractDao<T, PK extends Serializable> {
 	}
 
 	public List<T> findAll() {
-		return entityManager.createQuery("from " + entityClass.getSimpleName(), entityClass).getResultList();
+		return entityManager
+				.createQuery("SELECT e FROM " + entityClass.getSimpleName() + " e ORDER BY e.id", entityClass)
+				.getResultList();
 	}
 
 	protected List<T> createQuery(String jpql, Object... params) {

@@ -21,12 +21,12 @@ public class DepartmentController {
 	@GetMapping("/register")
 	public String register(Department department) {
 		return "/department/register";
-	} 
+	}
 
 	@GetMapping("/list")
 	public String list(ModelMap model) {
 		model.addAttribute("departments", service.findAll());
-		
+
 		return "/department/list";
 	}
 
@@ -36,19 +36,28 @@ public class DepartmentController {
 
 		return "redirect:/departments/register";
 	}
-	
+
 	@GetMapping("/update/{id}")
 	public String preUpdate(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("department", service.findById(id));
-		
+
 		return "department/register";
 	}
-	
+
 	@PostMapping("/update")
 	public String update(Department department) {
 		service.update(department);
-		
+
 		return "redirect:/departments/register";
 	}
-	
+
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable("id") Long id, ModelMap model) {
+		if (!service.departmentHaveRoles(id)) {
+			service.delete(id);
+		}
+
+		return list(model);
+	}
+
 }

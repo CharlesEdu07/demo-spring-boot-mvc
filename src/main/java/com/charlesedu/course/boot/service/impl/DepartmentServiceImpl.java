@@ -44,4 +44,13 @@ public class DepartmentServiceImpl implements DepartmentService {
 		return dao.findAll();
 	}
 
+	@Override
+	public boolean departmentHaveRoles(Long id) {
+		if (findById(id).getRoles().isEmpty()) {
+			return false;
+		}
+
+		return true;
+	}
+
 }
