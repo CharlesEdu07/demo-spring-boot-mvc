@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.charlesedu.course.boot.domain.Department;
 import com.charlesedu.course.boot.service.DepartmentService;
@@ -31,8 +32,10 @@ public class DepartmentController {
 	}
 
 	@PostMapping("/save")
-	public String save(Department department) {
+	public String save(Department department, RedirectAttributes attr) {
 		service.save(department);
+		
+		attr.addFlashAttribute("success", "Departamento editado com sucesso.");
 
 		return "redirect:/departments/register";
 	}
@@ -45,16 +48,22 @@ public class DepartmentController {
 	}
 
 	@PostMapping("/update")
-	public String update(Department department) {
+	public String update(Department department, RedirectAttributes attr) {
 		service.update(department);
+		
+		attr.addFlashAttribute("success", "Departamento editado com sucesso.");
 
 		return "redirect:/departments/register";
 	}
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable("id") Long id, ModelMap model) {
-		if (!service.departmentHaveRoles(id)) {
+		if (service.departmentHaveRoles(id)) {
+			model.addAttribute("fail", "Departamento não removido. Possui cargo(s) vinculados.");
+		} else {
 			service.delete(id);
+			
+			model.addAttribute("success", "Departamento removido com sucesso.");
 		}
 
 		return list(model);
