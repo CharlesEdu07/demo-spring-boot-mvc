@@ -17,7 +17,7 @@ public class Role extends AbstractEntity<Long> {
 	private String name;
 
 	@ManyToOne
-	@JoinColumn(name = "id_department_fk")
+	@JoinColumn(name = "id_department_fk", referencedColumnName = "id")
 	private Department department;
 
 	@OneToMany(mappedBy = "role")
@@ -31,7 +31,7 @@ public class Role extends AbstractEntity<Long> {
 		this.name = name;
 	}
 
-	public Department getDeparment() {
+	public Department getDepartment() {
 		return department;
 	}
 

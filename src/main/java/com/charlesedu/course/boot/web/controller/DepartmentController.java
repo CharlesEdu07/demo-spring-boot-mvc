@@ -35,7 +35,7 @@ public class DepartmentController {
 	public String save(Department department, RedirectAttributes attr) {
 		service.save(department);
 		
-		attr.addFlashAttribute("success", "Departamento editado com sucesso.");
+		attr.addFlashAttribute("success", "Departamento inserido com sucesso.");
 
 		return "redirect:/departments/register";
 	}
