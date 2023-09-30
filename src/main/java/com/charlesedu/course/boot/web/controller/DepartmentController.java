@@ -23,14 +23,7 @@ public class DepartmentController {
 	public String register(Department department) {
 		return "/department/register";
 	}
-
-	@GetMapping("/list")
-	public String list(ModelMap model) {
-		model.addAttribute("departments", service.findAll());
-
-		return "/department/list";
-	}
-
+	
 	@PostMapping("/save")
 	public String save(Department department, RedirectAttributes attr) {
 		service.save(department);
@@ -38,6 +31,13 @@ public class DepartmentController {
 		attr.addFlashAttribute("success", "Departamento inserido com sucesso.");
 
 		return "redirect:/departments/register";
+	}
+
+	@GetMapping("/list")
+	public String list(ModelMap model) {
+		model.addAttribute("departments", service.findAll());
+
+		return "/department/list";
 	}
 
 	@GetMapping("/update/{id}")
