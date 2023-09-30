@@ -28,4 +28,9 @@ public class Department extends AbstractEntity<Long> {
 	public List<Role> getRoles() {
 		return roles;
 	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
 }

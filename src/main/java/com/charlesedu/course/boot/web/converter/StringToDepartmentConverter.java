@@ -1,4 +1,4 @@
-package com.charlesedu.course.boot.web.conversor;
+package com.charlesedu.course.boot.web.converter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
@@ -21,6 +21,8 @@ public class StringToDepartmentConverter implements Converter<String, Department
 
 		Long id = Long.valueOf(text);
 
+		System.out.println(id);
+		
 		return service.findById(id);
 	}
 
