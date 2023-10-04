@@ -44,4 +44,13 @@ public class RoleServiceImpl implements RoleService {
 		return dao.findAll();
 	}
 
+	@Override
+	public boolean roleHaveEmployees(Long id) {
+		if (findById(id).getEmployees().isEmpty()) {
+			return false;
+		}
+
+		return true;
+	}
+
 }

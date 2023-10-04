@@ -20,10 +20,10 @@ import com.charlesedu.course.boot.service.RoleService;
 @Controller
 @RequestMapping("/roles")
 public class RoleController {
-	
+
 	@Autowired
 	private RoleService roleService;
-	
+
 	@Autowired
 	private DepartmentService departmentService;
 
@@ -31,11 +31,11 @@ public class RoleController {
 	public String register(Role role) {
 		return "/role/register";
 	}
-	
+
 	@PostMapping("/save")
 	public String save(Role role, RedirectAttributes attr) {
 		roleService.save(role);
-		
+
 		attr.addFlashAttribute("success", "Cargo inserido com sucesso.");
 
 		return "redirect:/roles/register";
@@ -44,10 +44,10 @@ public class RoleController {
 	@GetMapping("/list")
 	public String list(ModelMap model) {
 		model.addAttribute("roles", roleService.findAll());
-		
+
 		return "/role/list";
 	}
-	
+
 	@GetMapping("/update/{id}")
 	public String preUpdate(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("role", roleService.findById(id));
@@ -58,15 +58,28 @@ public class RoleController {
 	@PostMapping("/update")
 	public String update(Role role, RedirectAttributes attr) {
 		roleService.update(role);
-		
+
 		attr.addFlashAttribute("success", "Cargo editado com sucesso.");
 
 		return "redirect:/roles/register";
 	}
-	
+
 	@ModelAttribute("departments")
 	public List<Department> departmentList() {
 		return departmentService.findAll();
+	}
+
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable("id") Long id, RedirectAttributes attr) {
+		if (roleService.roleHaveEmployees(id)) {
+			attr.addFlashAttribute("fail", "Cargo não removido. Possui funcionario(s) vinculados.");
+		} else {
+			roleService.delete(id);
+
+			attr.addFlashAttribute("success", "Cargo removido com sucesso.");
+		}
+
+		return "redirect:/roles/list";
 	}
 
 }
