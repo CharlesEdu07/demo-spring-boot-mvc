@@ -22,7 +22,7 @@ public class Employee extends AbstractEntity<Long> {
 	private BigDecimal salary;
 
 	@Column(name = "entry_date", nullable = false, columnDefinition = "DATE")
-	private LocalDate entryDate;
+	private LocalDate admissionDate;
 
 	@Column(name = "exit_date", columnDefinition = "DATE")
 	private LocalDate exitDate;
@@ -51,12 +51,12 @@ public class Employee extends AbstractEntity<Long> {
 		this.salary = salary;
 	}
 
-	public LocalDate getEntryDate() {
-		return entryDate;
+	public LocalDate getadmissionDate() {
+		return admissionDate;
 	}
 
-	public void setEntryDate(LocalDate entryDate) {
-		this.entryDate = entryDate;
+	public void setadmissionDate(LocalDate admissionDate) {
+		this.admissionDate = admissionDate;
 	}
 
 	public LocalDate getExitDate() {

@@ -23,11 +23,11 @@ public class DepartmentController {
 	public String register(Department department) {
 		return "/department/register";
 	}
-	
+
 	@PostMapping("/save")
 	public String save(Department department, RedirectAttributes attr) {
 		service.save(department);
-		
+
 		attr.addFlashAttribute("success", "Departamento inserido com sucesso.");
 
 		return "redirect:/departments/register";
@@ -50,7 +50,7 @@ public class DepartmentController {
 	@PostMapping("/update")
 	public String update(Department department, RedirectAttributes attr) {
 		service.update(department);
-		
+
 		attr.addFlashAttribute("success", "Departamento editado com sucesso.");
 
 		return "redirect:/departments/register";
@@ -62,7 +62,7 @@ public class DepartmentController {
 			model.addAttribute("fail", "Departamento não removido. Possui cargo(s) vinculados.");
 		} else {
 			service.delete(id);
-			
+
 			model.addAttribute("success", "Departamento removido com sucesso.");
 		}
 

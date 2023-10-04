@@ -23,7 +23,7 @@ public class Address extends AbstractEntity<Long> {
 
 	@Column(name = "federative_unit", nullable = false, length = 2)
 	@Enumerated(EnumType.STRING)
-	private FederativeUnit federativaUnit;
+	private FederativeUnit federativeUnit;
 
 	@Column(nullable = false, length = 9)
 	private String cep;
@@ -57,12 +57,12 @@ public class Address extends AbstractEntity<Long> {
 		this.city = city;
 	}
 
-	public FederativeUnit getFederativaUnit() {
-		return federativaUnit;
+	public FederativeUnit getFederativeUnit() {
+		return federativeUnit;
 	}
 
-	public void setFederativaUnit(FederativeUnit federativaUnit) {
-		this.federativaUnit = federativaUnit;
+	public void setFederativeUnit(FederativeUnit federativeUnit) {
+		this.federativeUnit = federativeUnit;
 	}
 
 	public String getCep() {
