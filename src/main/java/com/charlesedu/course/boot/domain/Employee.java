@@ -3,6 +3,11 @@ package com.charlesedu.course.boot.domain;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.format.annotation.NumberFormat.Style;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,12 +23,15 @@ public class Employee extends AbstractEntity<Long> {
 	@Column(nullable = false, unique = true)
 	private String name;
 
+	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
 	@Column(nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
 	private BigDecimal salary;
 
-	@Column(name = "entry_date", nullable = false, columnDefinition = "DATE")
+	@DateTimeFormat(iso = ISO.DATE)
+	@Column(name = "admission_date", nullable = false, columnDefinition = "DATE")
 	private LocalDate admissionDate;
 
+	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "exit_date", columnDefinition = "DATE")
 	private LocalDate exitDate;
 
@@ -51,11 +59,11 @@ public class Employee extends AbstractEntity<Long> {
 		this.salary = salary;
 	}
 
-	public LocalDate getadmissionDate() {
+	public LocalDate getAdmissionDate() {
 		return admissionDate;
 	}
 
-	public void setadmissionDate(LocalDate admissionDate) {
+	public void setAdmissionDate(LocalDate admissionDate) {
 		this.admissionDate = admissionDate;
 	}
 
@@ -82,4 +90,5 @@ public class Employee extends AbstractEntity<Long> {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+
 }

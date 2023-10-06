@@ -167,10 +167,11 @@
                 class="form-control"
                 th:field="*{address.federativeUnit}"
               >
+                >
                 <option value="">Selecione...</option>
                 <option
                   th:each="federativeUnit : ${federativeUnits}"
-                  th:value="federativeUnit"
+                  th:value="${federativeUnit}"
                   th:text="${federativeUnit.acronym}"
                 ></option>
               </select>

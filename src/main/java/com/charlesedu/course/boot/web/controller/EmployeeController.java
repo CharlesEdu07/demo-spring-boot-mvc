@@ -37,7 +37,7 @@ public class EmployeeController {
 	public String save(Employee employee, RedirectAttributes attr) {
 		employeeService.save(employee);
 
-		attr.addFlashAttribute("success", "Cargo inserido com sucesso.");
+		attr.addFlashAttribute("success", "Funcionário inserido com sucesso.");
 
 		return "redirect:/employees/register";
 	}

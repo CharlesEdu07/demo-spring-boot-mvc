@@ -4,17 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import com.charlesedu.course.boot.domain.Department;
-import com.charlesedu.course.boot.service.DepartmentService;
+import com.charlesedu.course.boot.domain.Role;
+import com.charlesedu.course.boot.service.RoleService;
 
 @Component
-public class StringToDepartmentConverter implements Converter<String, Department> {
-
-	@Autowired
-	private DepartmentService service;
+public class StringToRoleConverter implements Converter<String, Role> {
+    @Autowired
+	private RoleService service;
 
 	@Override
-	public Department convert(String text) {
+	public Role convert(String text) {
 		if (text.isEmpty()) {
 			return null;
 		}
@@ -23,5 +22,4 @@ public class StringToDepartmentConverter implements Converter<String, Department
 		
 		return service.findById(id);
 	}
-
 }
