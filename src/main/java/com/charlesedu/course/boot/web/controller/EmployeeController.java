@@ -57,6 +57,13 @@ public class EmployeeController {
 		return "employee/list";
 	}
 
+	@GetMapping("/search/role")
+	public String getByRole(@RequestParam("id") Long id, ModelMap model) {
+		model.addAttribute("employees", employeeService.findByRole(id));
+
+		return "employee/list";
+	}
+
 	@GetMapping("/update/{id}")
 	public String preUpdate(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("employee", employeeService.findById(id));

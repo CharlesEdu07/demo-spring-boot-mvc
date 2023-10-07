@@ -40,6 +40,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return dao.findByName(name);
 	}
 
+	@Override
+	public List<Employee> findByRole(Long id) {
+		return dao.findByRole(id);
+	}
+
 	@Transactional(readOnly = false)
 	@Override
 	public void update(Employee employee) {

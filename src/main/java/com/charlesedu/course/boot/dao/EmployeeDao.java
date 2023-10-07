@@ -13,6 +13,8 @@ public interface EmployeeDao {
 
 	List<Employee> findByName(String name);
 
+	List<Employee> findByRole(Long id);
+
 	void update(Employee employee);
 
 	void delete(Long id);
