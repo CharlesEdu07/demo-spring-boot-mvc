@@ -64,11 +64,6 @@ public class RoleController {
 		return "redirect:/roles/register";
 	}
 
-	@ModelAttribute("departments")
-	public List<Department> departmentList() {
-		return departmentService.findAll();
-	}
-
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable("id") Long id, RedirectAttributes attr) {
 		if (roleService.roleHaveEmployees(id)) {
@@ -80,6 +75,11 @@ public class RoleController {
 		}
 
 		return "redirect:/roles/list";
+	}
+
+	@ModelAttribute("departments")
+	public List<Department> departmentList() {
+		return departmentService.findAll();
 	}
 
 }

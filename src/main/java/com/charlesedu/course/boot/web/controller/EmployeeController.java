@@ -60,9 +60,18 @@ public class EmployeeController {
 	public String update(Employee employee, RedirectAttributes attr) {
 		employeeService.update(employee);
 
-		attr.addFlashAttribute("success", "Cargo editado com sucesso.");
+		attr.addFlashAttribute("success", "Funcionário editado com sucesso.");
 
 		return "redirect:/employees/register";
+	}
+
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable("id") Long id, ModelMap model) {
+		employeeService.delete(id);
+
+		model.addAttribute("success", "Funcionário removido com sucesso.");
+
+		return list(model);
 	}
 
 	@ModelAttribute("roles")

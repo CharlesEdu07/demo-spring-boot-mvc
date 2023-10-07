@@ -32,10 +32,10 @@
       </div>
 
       <div class="container" id="register">
-        <div th:replace="fragments/alert"></div>
+        <div th:replace="~{fragments/alert}"></div>
 
         <form
-          th:action="@{/employees/save}"
+          th:action="${employee.id == null} ? @{/employees/save} : @{/employees/update}"
           th:object="${employee}"
           method="POST"
         >
@@ -189,7 +189,8 @@
               <div class="invalid-feedback"></div>
             </div>
           </div>
-          <input type="hidden" id="id" name="id" value="" />
+          <input type="hidden" id="id" th:field="*{id}" />
+          <input type="hidden" id="address.id" th:field="*{address.id}">
           <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
         </form>
       </div>
