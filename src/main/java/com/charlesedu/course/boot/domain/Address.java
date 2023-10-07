@@ -26,7 +26,7 @@ public class Address extends AbstractEntity<Long> {
 	private FederativeUnit federativeUnit;
 
 	@Column(nullable = false, length = 9)
-	private String cep;
+	private String zipCode;
 
 	@Column(nullable = false, length = 5)
 	private Integer number;
@@ -65,12 +65,12 @@ public class Address extends AbstractEntity<Long> {
 		this.federativeUnit = federativeUnit;
 	}
 
-	public String getCep() {
-		return cep;
+	public String getZipCode() {
+		return zipCode;
 	}
 
-	public void setCep(String cep) {
-		this.cep = cep;
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
 	}
 
 	public Integer getNumber() {
