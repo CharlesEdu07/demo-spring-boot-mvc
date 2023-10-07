@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.charlesedu.course.boot.domain.Employee;
@@ -47,6 +48,13 @@ public class EmployeeController {
 		model.addAttribute("employees", employeeService.findAll());
 
 		return "/employee/list";
+	}
+
+	@GetMapping("/search/name")
+	public String getByName(@RequestParam("name") String name, ModelMap model) {
+		model.addAttribute("employees", employeeService.findByName(name));
+
+		return "employee/list";
 	}
 
 	@GetMapping("/update/{id}")

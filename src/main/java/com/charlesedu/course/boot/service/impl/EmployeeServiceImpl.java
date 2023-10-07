@@ -11,25 +11,16 @@ import com.charlesedu.course.boot.domain.Employee;
 import com.charlesedu.course.boot.service.EmployeeService;
 
 @Service
-@Transactional(readOnly = false)
+@Transactional(readOnly = true)
 public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
 	private EmployeeDao dao;
 
+	@Transactional(readOnly = false)
 	@Override
 	public void save(Employee employee) {
 		dao.save(employee);
-	}
-
-	@Override
-	public void update(Employee employee) {
-		dao.update(employee);
-	}
-
-	@Override
-	public void delete(Long id) {
-		dao.delete(id);
 	}
 
 	@Override
@@ -42,6 +33,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Transactional(readOnly = true)
 	public List<Employee> findAll() {
 		return dao.findAll();
+	}
+
+	@Override
+	public List<Employee> findByName(String name) {
+		return dao.findByName(name);
+	}
+
+	@Transactional(readOnly = false)
+	@Override
+	public void update(Employee employee) {
+		dao.update(employee);
+	}
+
+	@Transactional(readOnly = false)
+	@Override
+	public void delete(Long id) {
+		dao.delete(id);
 	}
 
 }

@@ -16,7 +16,7 @@
           </ul>
           <a
             class="btn btn-primary btn-md"
-            href="/employees/register"
+            th:href="@{/employees/register}"
             role="button"
           >
             <span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
@@ -63,14 +63,14 @@
                 <form
                   class="form-inline"
                   method="GET"
-                  action="/funcionarios/buscar/nome"
+                  th:action="@{/employees/search/name}"
                 >
                   <input
                     class="form-control mr-sm-2"
                     type="search"
                     placeholder="nome"
                     aria-label="Search"
-                    name="nome"
+                    th:name="name"
                   />
                   <button class="btn btn-outline-success my-2 my-sm-0">
                     Search
