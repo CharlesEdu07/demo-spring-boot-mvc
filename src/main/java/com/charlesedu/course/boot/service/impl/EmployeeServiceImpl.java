@@ -1,5 +1,7 @@
 package com.charlesedu.course.boot.service.impl;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<Employee> findByRole(Long id) {
 		return dao.findByRole(id);
+	}
+
+	@Override
+	public List<Employee> findByDate(LocalDate admission, LocalDate exit) {
+		if (admission != null && exit != null) {
+			return dao.findByAdmissionDateAndExitDate(admission, exit);
+		} else if (admission != null) {
+			return dao.findByAdmissionDate(admission);
+		} else if (exit != null) {
+			return dao.findByExitDate(exit);
+		} else {
+			return new ArrayList<>();
+		}
 	}
 
 	@Transactional(readOnly = false)
