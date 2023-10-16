@@ -23,5 +23,4 @@ public class StringToDepartmentConverter implements Converter<String, Department
 		
 		return service.findById(id);
 	}
-
 }

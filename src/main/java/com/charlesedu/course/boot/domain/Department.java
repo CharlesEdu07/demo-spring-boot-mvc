@@ -6,11 +6,16 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "TB_DEPARTMENTS")
 public class Department extends AbstractEntity<Long> {
+
+	@NotBlank(message = "Informe um nome.")
+	@Size(min = 3, max = 60, message = "O nome do departamento deve ter entre {min} e {max} caracteres.")
 	@Column(name = "name", nullable = false, unique = true, length = 60)
 	private String name;
 
@@ -32,5 +37,4 @@ public class Department extends AbstractEntity<Long> {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-
 }

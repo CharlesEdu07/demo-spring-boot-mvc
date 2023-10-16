@@ -9,6 +9,7 @@ import com.charlesedu.course.boot.service.RoleService;
 
 @Component
 public class StringToRoleConverter implements Converter<String, Role> {
+	
     @Autowired
 	private RoleService service;
 

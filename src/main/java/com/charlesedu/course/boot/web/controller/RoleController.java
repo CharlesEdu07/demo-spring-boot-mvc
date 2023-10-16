@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,8 @@ import com.charlesedu.course.boot.domain.Department;
 import com.charlesedu.course.boot.domain.Role;
 import com.charlesedu.course.boot.service.DepartmentService;
 import com.charlesedu.course.boot.service.RoleService;
+
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/roles")
@@ -33,7 +36,11 @@ public class RoleController {
 	}
 
 	@PostMapping("/save")
-	public String save(Role role, RedirectAttributes attr) {
+	public String save(@Valid Role role, BindingResult result, RedirectAttributes attr) {
+		if (result.hasErrors()) {
+			return "/role/register";
+		}
+
 		roleService.save(role);
 
 		attr.addFlashAttribute("success", "Cargo inserido com sucesso.");
@@ -56,7 +63,11 @@ public class RoleController {
 	}
 
 	@PostMapping("/update")
-	public String update(Role role, RedirectAttributes attr) {
+	public String update(@Valid Role role, BindingResult result, RedirectAttributes attr) {
+		if (result.hasErrors()) {
+			return "/role/register";
+		}
+
 		roleService.update(role);
 
 		attr.addFlashAttribute("success", "Cargo editado com sucesso.");

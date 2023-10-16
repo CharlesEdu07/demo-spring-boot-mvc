@@ -3,6 +3,7 @@ package com.charlesedu.course.boot.web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.charlesedu.course.boot.domain.Department;
 import com.charlesedu.course.boot.service.DepartmentService;
+
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/departments")
@@ -25,7 +28,11 @@ public class DepartmentController {
 	}
 
 	@PostMapping("/save")
-	public String save(Department department, RedirectAttributes attr) {
+	public String save(@Valid Department department, BindingResult result, RedirectAttributes attr) {
+		if (result.hasErrors()) {
+			return "/department/register";
+		}
+
 		service.save(department);
 
 		attr.addFlashAttribute("success", "Departamento inserido com sucesso.");
@@ -48,7 +55,11 @@ public class DepartmentController {
 	}
 
 	@PostMapping("/update")
-	public String update(Department department, RedirectAttributes attr) {
+	public String update(@Valid Department department, BindingResult result, RedirectAttributes attr) {
+		if (result.hasErrors()) {
+			return "/department/register";
+		}
+
 		service.update(department);
 
 		attr.addFlashAttribute("success", "Departamento editado com sucesso.");
