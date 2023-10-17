@@ -9,59 +9,68 @@
       <ul class="nav nav-pills">
         <li class="nav-item">
           <a class="nav-link" href="/">
-            <i class="oi oi-home"></i> <span>Home</span>
+            <i class="oi oi-home"></i>
+            <span th:text="#{sidebar.link.home}"></span>
           </a>
         </li>
       </ul>
 
       <ul class="nav nav-pills">
         <li class="nav-item">
-          <span class="nav-link active">Departamentos</span>
+          <span
+            class="nav-link active"
+            th:text="#{sidebar.title.department}"
+          ></span>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/departments/register">
             <i class="oi oi-plus"></i>
-            <span>Cadastrar</span>
+            <span th:text="#{sidebar.link.register}"></span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/departments/list">
             <i class="oi oi-spreadsheet"></i>
-            <span>Listar </span>
+            <span th:text="#{sidebar.link.list}"></span>
           </a>
         </li>
       </ul>
 
       <ul class="nav nav-pills">
-        <li class="nav-item"><span class="nav-link active">Cargos</span></li>
+        <li class="nav-item">
+          <span
+            class="nav-link active"
+            th:text="#{sidebar.title.role}"
+          ></span>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="/roles/register">
             <i class="oi oi-plus"></i>
-            <span>Cadastrar </span>
+            <span th:text="#{sidebar.link.register}"></span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/roles/list">
             <i class="oi oi-spreadsheet"></i>
-            <span>Listar </span>
+            <span th:text="#{sidebar.link.list}"></span>
           </a>
         </li>
       </ul>
 
       <ul class="nav nav-pills">
         <li class="nav-item">
-          <span class="nav-link active">Funcionários</span>
+          <span class="nav-link active" th:text="#{sidebar.title.employee}"></span>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/employees/register">
             <i class="oi oi-plus"></i>
-            <span>Cadastrar </span>
+            <span th:text="#{sidebar.link.register}"></span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/employees/list">
             <i class="oi oi-spreadsheet"></i>
-            <span>Listar </span>
+            <span th:text="#{sidebar.link.list}"></span>
           </a>
         </li>
       </ul>
