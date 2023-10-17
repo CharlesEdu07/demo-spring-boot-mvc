@@ -8,7 +8,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +23,7 @@ import com.charlesedu.course.boot.domain.Role;
 import com.charlesedu.course.boot.domain.enums.FederativeUnit;
 import com.charlesedu.course.boot.service.EmployeeService;
 import com.charlesedu.course.boot.service.RoleService;
+import com.charlesedu.course.boot.web.validator.EmployeeValidator;
 
 import jakarta.validation.Valid;
 
@@ -33,6 +36,11 @@ public class EmployeeController {
 
 	@Autowired
 	private RoleService roleService;
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.addValidators(new EmployeeValidator());
+	}
 
 	@GetMapping("/register")
 	public String register(Employee employee) {
