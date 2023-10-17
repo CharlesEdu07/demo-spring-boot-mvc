@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,8 @@ import com.charlesedu.course.boot.domain.Role;
 import com.charlesedu.course.boot.domain.enums.FederativeUnit;
 import com.charlesedu.course.boot.service.EmployeeService;
 import com.charlesedu.course.boot.service.RoleService;
+
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("employees")
@@ -37,7 +40,11 @@ public class EmployeeController {
 	}
 
 	@PostMapping("/save")
-	public String save(Employee employee, RedirectAttributes attr) {
+	public String save(@Valid Employee employee, BindingResult result, RedirectAttributes attr) {
+		if (result.hasErrors()) {
+			return "/employee/register";
+		}
+
 		employeeService.save(employee);
 
 		attr.addFlashAttribute("success", "Funcionário inserido com sucesso.");
@@ -84,7 +91,11 @@ public class EmployeeController {
 	}
 
 	@PostMapping("/update")
-	public String update(Employee employee, RedirectAttributes attr) {
+	public String update(@Valid Employee employee, BindingResult result ,RedirectAttributes attr) {
+		if (result.hasErrors()) {
+			return "/employee/register";
+		}
+
 		employeeService.update(employee);
 
 		attr.addFlashAttribute("success", "Funcionário editado com sucesso.");
