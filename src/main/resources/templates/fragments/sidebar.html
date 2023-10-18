@@ -8,7 +8,7 @@
     <nav class="sidebar sidebar-open" th:fragment="nav-sidebar">
       <ul class="nav nav-pills">
         <li class="nav-item">
-          <a class="nav-link" href="/">
+          <a class="nav-link" th:href="@{/}">
             <i class="oi oi-home"></i>
             <span th:text="#{sidebar.link.home}"></span>
           </a>
@@ -23,13 +23,31 @@
           ></span>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/departments/register">
+          <a class="nav-link" th:href="@{/departments/register}">
             <i class="oi oi-plus"></i>
             <span th:text="#{sidebar.link.register}"></span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/departments/list">
+          <a class="nav-link" th:href="@{/departments/list}">
+            <i class="oi oi-spreadsheet"></i>
+            <span th:text="#{sidebar.link.list}"></span>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <span class="nav-link active" th:text="#{sidebar.title.role}"></span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/roles/register}">
+            <i class="oi oi-plus"></i>
+            <span th:text="#{sidebar.link.register}"></span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/roles/list}">
             <i class="oi oi-spreadsheet"></i>
             <span th:text="#{sidebar.link.list}"></span>
           </a>
@@ -40,35 +58,17 @@
         <li class="nav-item">
           <span
             class="nav-link active"
-            th:text="#{sidebar.title.role}"
+            th:text="#{sidebar.title.employee}"
           ></span>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/roles/register">
+          <a class="nav-link" th:href="@{/employees/register}">
             <i class="oi oi-plus"></i>
             <span th:text="#{sidebar.link.register}"></span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/roles/list">
-            <i class="oi oi-spreadsheet"></i>
-            <span th:text="#{sidebar.link.list}"></span>
-          </a>
-        </li>
-      </ul>
-
-      <ul class="nav nav-pills">
-        <li class="nav-item">
-          <span class="nav-link active" th:text="#{sidebar.title.employee}"></span>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/employees/register">
-            <i class="oi oi-plus"></i>
-            <span th:text="#{sidebar.link.register}"></span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/employees/list">
+          <a class="nav-link" th:href="@{/employees/list}">
             <i class="oi oi-spreadsheet"></i>
             <span th:text="#{sidebar.link.list}"></span>
           </a>

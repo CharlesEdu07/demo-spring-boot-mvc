@@ -92,5 +92,4 @@ public class RoleController {
 	public List<Department> departmentList() {
 		return departmentService.findAll();
 	}
-
 }
