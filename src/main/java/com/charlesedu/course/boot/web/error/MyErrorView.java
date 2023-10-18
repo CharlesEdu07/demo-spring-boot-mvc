@@ -32,6 +32,8 @@ public class MyErrorView implements ErrorViewResolver {
             default:
                 model.addObject("error", map.get("error"));
                 model.addObject("message", map.get("message"));
+
+                break;
         }
 
         return model;
