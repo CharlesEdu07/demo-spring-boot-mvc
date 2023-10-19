@@ -44,13 +44,13 @@ public class EmployeeController {
 
 	@GetMapping("/register")
 	public String register(Employee employee) {
-		return "/employee/register";
+		return "employee/register";
 	}
 
 	@PostMapping("/save")
 	public String save(@Valid Employee employee, BindingResult result, RedirectAttributes attr) {
 		if (result.hasErrors()) {
-			return "/employee/register";
+			return "employee/register";
 		}
 
 		employeeService.save(employee);
@@ -64,21 +64,21 @@ public class EmployeeController {
 	public String list(ModelMap model) {
 		model.addAttribute("employees", employeeService.findAll());
 
-		return "/employee/list";
+		return "employee/list";
 	}
 
 	@GetMapping("/search/name")
 	public String getByName(@RequestParam("name") String name, ModelMap model) {
 		model.addAttribute("employees", employeeService.findByName(name));
 
-		return "/employee/list";
+		return "employee/list";
 	}
 
 	@GetMapping("/search/role")
 	public String getByRole(@RequestParam("id") Long id, ModelMap model) {
 		model.addAttribute("employees", employeeService.findByRole(id));
 
-		return "/employee/list";
+		return "employee/list";
 	}
 
 	@GetMapping("/search/date")
@@ -88,7 +88,7 @@ public class EmployeeController {
 			ModelMap model) {
 		model.addAttribute("employees", employeeService.findByDate(admission, exit));
 
-		return "/employee/list";
+		return "employee/list";
 	}
 
 	@GetMapping("/update/{id}")
@@ -101,7 +101,7 @@ public class EmployeeController {
 	@PostMapping("/update")
 	public String update(@Valid Employee employee, BindingResult result ,RedirectAttributes attr) {
 		if (result.hasErrors()) {
-			return "/employee/register";
+			return "employee/register";
 		}
 
 		employeeService.update(employee);

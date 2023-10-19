@@ -32,13 +32,13 @@ public class RoleController {
 
 	@GetMapping("/register")
 	public String register(Role role) {
-		return "/role/register";
+		return "role/register";
 	}
 
 	@PostMapping("/save")
 	public String save(@Valid Role role, BindingResult result, RedirectAttributes attr) {
 		if (result.hasErrors()) {
-			return "/role/register";
+			return "role/register";
 		}
 
 		roleService.save(role);
@@ -52,7 +52,7 @@ public class RoleController {
 	public String list(ModelMap model) {
 		model.addAttribute("roles", roleService.findAll());
 
-		return "/role/list";
+		return "role/list";
 	}
 
 	@GetMapping("/update/{id}")
@@ -65,7 +65,7 @@ public class RoleController {
 	@PostMapping("/update")
 	public String update(@Valid Role role, BindingResult result, RedirectAttributes attr) {
 		if (result.hasErrors()) {
-			return "/role/register";
+			return "role/register";
 		}
 
 		roleService.update(role);
