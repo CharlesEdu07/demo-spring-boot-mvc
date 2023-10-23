@@ -77,25 +77,42 @@
               <li class="page-item">
                 <a
                   class="page-link"
+                  th:href="@{/roles/list(page=${1})}"
+                  tabindex="-1"
+                  >Primeira</a
+                >
+              </li>
+              <li
+                th:class="${rolePage.page == 1} ? 'page-item disabled' : 'page-item'"
+              >
+                <a
+                  class="page-link"
                   th:href="@{/roles/list(page=${rolePage.page - 1})}"
                   tabindex="-1"
-                  >Prev.</a
+                  >Anterior</a
                 >
               </li>
               <li class="page-item">
-                <a class="page-link" href="#">1</a>
+                <span
+                  class="page-link"
+                  th:text="|${rolePage.page} de ${rolePage.pagesTotal}|"
+                ></span>
               </li>
-              <li class="page-item">
-                <a class="page-link" href="#">2</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">3</a>
+              <li
+                th:class="${rolePage.page == rolePage.pagesTotal} ? 'page-item disabled' : 'page-item'"
+              >
+                <a
+                  class="page-link"
+                  th:href="@{/roles/list(page=${rolePage.page + 1})}"
+                  >Próxima</a
+                >
               </li>
               <li class="page-item">
                 <a
                   class="page-link"
-                  th:href="@{/roles/list(page=${rolePage.page + 1})}"
-                  >Next</a
+                  th:href="@{/roles/list(page=${rolePage.pagesTotal})}"
+                  tabindex="-1"
+                  >Última</a
                 >
               </li>
             </ul>
