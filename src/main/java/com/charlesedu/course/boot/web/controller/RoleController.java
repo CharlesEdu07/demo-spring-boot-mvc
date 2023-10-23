@@ -1,6 +1,7 @@
 package com.charlesedu.course.boot.web.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,12 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.charlesedu.course.boot.domain.Department;
 import com.charlesedu.course.boot.domain.Role;
 import com.charlesedu.course.boot.service.DepartmentService;
 import com.charlesedu.course.boot.service.RoleService;
+import com.charlesedu.course.boot.util.PaginationUtil;
 
 import jakarta.validation.Valid;
 
@@ -49,8 +52,12 @@ public class RoleController {
 	}
 
 	@GetMapping("/list")
-	public String list(ModelMap model) {
-		model.addAttribute("roles", roleService.findAll());
+	public String list(ModelMap model, @RequestParam("page") Optional<Integer> page) {
+		int currentPage = page.orElse(1);
+
+		PaginationUtil<Role> rolePage = roleService.paginationSearch(currentPage);
+
+		model.addAttribute("rolePage", rolePage);
 
 		return "role/list";
 	}

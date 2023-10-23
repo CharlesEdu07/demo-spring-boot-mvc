@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.charlesedu.course.boot.dao.RoleDao;
 import com.charlesedu.course.boot.domain.Role;
 import com.charlesedu.course.boot.service.RoleService;
+import com.charlesedu.course.boot.util.PaginationUtil;
 
 @Service
 @Transactional(readOnly = false)
@@ -53,4 +54,7 @@ public class RoleServiceImpl implements RoleService {
 		return true;
 	}
 
+	public PaginationUtil<Role> paginationSearch(int page) {
+		return dao.paginationSearch(page);
+	}
 }
