@@ -17,8 +17,6 @@ public class RoleDaoImpl extends AbstractDao<Role, Long> implements RoleDao {
 
         String jpql = "select r from Role r order by r." + property + " " + sort;
 
-        System.out.println("JPQL Query: " + jpql);
-
         List<Role> roles = getEntityManager()
                 .createQuery(jpql, Role.class)
                 .setFirstResult(start).setMaxResults(length).getResultList();
