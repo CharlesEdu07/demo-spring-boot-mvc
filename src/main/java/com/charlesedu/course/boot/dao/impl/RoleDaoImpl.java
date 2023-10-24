@@ -11,11 +11,11 @@ import com.charlesedu.course.boot.util.PaginationUtil;
 
 @Repository
 public class RoleDaoImpl extends AbstractDao<Role, Long> implements RoleDao {
-    public PaginationUtil<Role> paginationSearch(int page, String sort, String field) {
+    public PaginationUtil<Role> paginationSearch(int page, String sort, String property) {
         int length = 5;
         int start = (page - 1) * length;
 
-        String jpql = "select r from Role r order by r." + field + " " + sort;
+        String jpql = "select r from Role r order by r." + property + " " + sort;
 
         System.out.println("JPQL Query: " + jpql);
 
@@ -26,7 +26,7 @@ public class RoleDaoImpl extends AbstractDao<Role, Long> implements RoleDao {
         long totalRecords = count();
         long pagesTotal = (totalRecords + (length - 1)) / length;
 
-        return new PaginationUtil<Role>(length, page, pagesTotal, sort, field, roles);
+        return new PaginationUtil<Role>(length, page, pagesTotal, sort, property, roles);
     }
 
     public long count() {

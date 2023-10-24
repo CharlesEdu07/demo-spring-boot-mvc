@@ -18,5 +18,5 @@ public interface RoleService {
 	
 	boolean roleHaveEmployees(Long id);
 
-	PaginationUtil<Role> paginationSearch(int page, String sort, String field);
+	PaginationUtil<Role> paginationSearch(int page, String sort, String property);
 }

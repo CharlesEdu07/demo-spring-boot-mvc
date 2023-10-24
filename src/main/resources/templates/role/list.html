@@ -103,7 +103,7 @@
               <li class="page-item">
                 <a
                   class="page-link"
-                  th:href="@{/roles/list(page=${1}, sort=${rolePage.sort})}"
+                  th:href="@{/roles/list(page=${1}, sort=${rolePage.sort}, sortProperty=${rolePage.property})}"
                   tabindex="-1"
                   >Primeira</a
                 >
@@ -113,7 +113,7 @@
               >
                 <a
                   class="page-link"
-                  th:href="@{/roles/list(page=${rolePage.page - 1}, sort=${rolePage.sort})}"
+                  th:href="@{/roles/list(page=${rolePage.page - 1}, sort=${rolePage.sort}, sortProperty=${rolePage.property})}"
                   tabindex="-1"
                   >Anterior</a
                 >
@@ -129,14 +129,14 @@
               >
                 <a
                   class="page-link"
-                  th:href="@{/roles/list(page=${rolePage.page + 1}, sort=${rolePage.sort})}"
+                  th:href="@{/roles/list(page=${rolePage.page + 1}, sort=${rolePage.sort}, sortProperty=${rolePage.property})}"
                   >Próxima</a
                 >
               </li>
               <li class="page-item">
                 <a
                   class="page-link"
-                  th:href="@{/roles/list(page=${rolePage.pagesTotal}, sort=${rolePage.sort})}"
+                  th:href="@{/roles/list(page=${rolePage.pagesTotal}, sort=${rolePage.sort}, sortProperty=${rolePage.property})}"
                   tabindex="-1"
                   >Última</a
                 >
