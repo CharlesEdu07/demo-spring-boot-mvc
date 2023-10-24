@@ -6,12 +6,14 @@ public class PaginationUtil<T> {
     private Integer length;
     private Integer page;
     private Long pagesTotal;
+    private String sort;
     private List<T> records;
 
-    public PaginationUtil(Integer length, Integer page, Long pagesTotal, List<T> records) {
+    public PaginationUtil(Integer length, Integer page, Long pagesTotal, String sort, List<T> records) {
         this.length = length;
         this.page = page;
         this.pagesTotal = pagesTotal;
+        this.sort = sort;
         this.records = records;
     }
 
@@ -25,6 +27,10 @@ public class PaginationUtil<T> {
 
     public Long getPagesTotal() {
         return pagesTotal;
+    }
+
+    public String getSort() {
+        return sort;
     }
 
     public List<T> getRecords() {

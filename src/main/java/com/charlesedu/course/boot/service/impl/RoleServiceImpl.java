@@ -54,7 +54,7 @@ public class RoleServiceImpl implements RoleService {
 		return true;
 	}
 
-	public PaginationUtil<Role> paginationSearch(int page) {
-		return dao.paginationSearch(page);
+	public PaginationUtil<Role> paginationSearch(int page, String sort) {
+		return dao.paginationSearch(page, sort);
 	}
 }
