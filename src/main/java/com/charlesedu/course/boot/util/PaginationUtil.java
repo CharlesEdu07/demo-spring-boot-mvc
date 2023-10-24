@@ -7,13 +7,15 @@ public class PaginationUtil<T> {
     private Integer page;
     private Long pagesTotal;
     private String sort;
+    private String field;
     private List<T> records;
 
-    public PaginationUtil(Integer length, Integer page, Long pagesTotal, String sort, List<T> records) {
+    public PaginationUtil(Integer length, Integer page, Long pagesTotal, String sort, String field, List<T> records) {
         this.length = length;
         this.page = page;
         this.pagesTotal = pagesTotal;
         this.sort = sort;
+        this.field = field;
         this.records = records;
     }
 
@@ -31,6 +33,10 @@ public class PaginationUtil<T> {
 
     public String getSort() {
         return sort;
+    }
+
+    public String getField() {
+        return field;
     }
 
     public List<T> getRecords() {

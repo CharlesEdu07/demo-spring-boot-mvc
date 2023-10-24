@@ -53,11 +53,13 @@ public class RoleController {
 
 	@GetMapping("/list")
 	public String list(ModelMap model, @RequestParam("page") Optional<Integer> page,
-			@RequestParam("sort") Optional<String> sort) {
+			@RequestParam("sort") Optional<String> sort, @RequestParam("sortProperty") Optional<String> field) {
 		int currentPage = page.orElse(1);
-		String sortCriteria = sort.orElse("asc");
 
-		PaginationUtil<Role> rolePage = roleService.paginationSearch(currentPage, sortCriteria);
+		String sortCriteria = sort.orElse("asc");
+		String sortField = field.orElse("name");
+
+		PaginationUtil<Role> rolePage = roleService.paginationSearch(currentPage, sortCriteria, sortField);
 
 		model.addAttribute("rolePage", rolePage);
 
