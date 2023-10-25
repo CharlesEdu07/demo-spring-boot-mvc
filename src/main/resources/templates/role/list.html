@@ -24,10 +24,27 @@
           <span>Novo Cargo</span>
         </a>
       </nav>
-
       <div class="container" id="list">
+        <div>
+          <form
+            th:action="@{/roles/list(page=${rolePage.page}, sort=desc, property=department.name, size=${rolePage.size})}"
+          >
+            <label for="size">Número de resultados: </label>
+            <select
+              class="form-select"
+              id="size"
+              name="size"
+              onchange="this.form.submit()"
+            >
+              <option value="Selecione">Selecione</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+            </select>
+          </form>
+        </div>
+        <br />
         <div th:replace="~{fragments/alert}"></div>
-
         <div class="table-responsive">
           <table class="table table-striped table-hover table-sm">
             <thead>
@@ -35,28 +52,28 @@
                 <th>#</th>
                 <th>
                   <a
-                    th:href="@{/roles/list(page=${rolePage.page}, sort=desc)}"
+                    th:href="@{/roles/list(page=${rolePage.page}, sort=desc, size=${rolePage.size})}"
                     tabindex="-1"
                   >
                     <span class="oi oi-arrow-bottom"></span>
                   </a>
                   Cargo
                   <a
-                    th:href="@{/roles/list(page=${rolePage.page}, sort=asc)}"
+                    th:href="@{/roles/list(page=${rolePage.page}, sort=asc, size=${rolePage.size})}"
                     tabindex="-1"
                     ><span class="oi oi-arrow-top"></span
                   ></a>
                 </th>
                 <th>
                   <a
-                    th:href="@{/roles/list(page=${rolePage.page}, sort=desc, sortProperty=department.name)}"
+                    th:href="@{/roles/list(page=${rolePage.page}, sort=desc, property=department.name, size=${rolePage.size})}"
                     tabindex="-1"
                   >
                     <span class="oi oi-arrow-bottom"></span>
                   </a>
                   Departamento
                   <a
-                    th:href="@{/roles/list(page=${rolePage.page}, sort=asc, sortProperty=department.name)}"
+                    th:href="@{/roles/list(page=${rolePage.page}, sort=asc, property=department.name, size=${rolePage.size})}"
                     tabindex="-1"
                     ><span class="oi oi-arrow-top"></span
                   ></a>
@@ -103,7 +120,7 @@
               <li class="page-item">
                 <a
                   class="page-link"
-                  th:href="@{/roles/list(page=${1}, sort=${rolePage.sort}, sortProperty=${rolePage.property})}"
+                  th:href="@{/roles/list(page=${1}, sort=${rolePage.sort}, property=${rolePage.property}, size=${rolePage.size})}"
                   tabindex="-1"
                   >Primeira</a
                 >
@@ -113,7 +130,7 @@
               >
                 <a
                   class="page-link"
-                  th:href="@{/roles/list(page=${rolePage.page - 1}, sort=${rolePage.sort}, sortProperty=${rolePage.property})}"
+                  th:href="@{/roles/list(page=${rolePage.page - 1}, sort=${rolePage.sort}, property=${rolePage.property}, size=${rolePage.size})}"
                   tabindex="-1"
                   >Anterior</a
                 >
@@ -129,14 +146,14 @@
               >
                 <a
                   class="page-link"
-                  th:href="@{/roles/list(page=${rolePage.page + 1}, sort=${rolePage.sort}, sortProperty=${rolePage.property})}"
+                  th:href="@{/roles/list(page=${rolePage.page + 1}, sort=${rolePage.sort}, property=${rolePage.property}, size=${rolePage.size})}"
                   >Próxima</a
                 >
               </li>
               <li class="page-item">
                 <a
                   class="page-link"
-                  th:href="@{/roles/list(page=${rolePage.pagesTotal}, sort=${rolePage.sort}, sortProperty=${rolePage.property})}"
+                  th:href="@{/roles/list(page=${rolePage.pagesTotal}, sort=${rolePage.sort}, property=${rolePage.property}, size=${rolePage.size})}"
                   tabindex="-1"
                   >Última</a
                 >
