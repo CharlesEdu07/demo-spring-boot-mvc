@@ -1,176 +1,118 @@
 <!DOCTYPE html>
 <html lang="pt" layout:decorate="~{layouts/main-layout}">
-  <head>
-    <meta charset="UTF-8" />
-  </head>
 
-  <body>
-    <section class="layout-content" layout:fragment="main-body">
-      <nav class="navbar navbar-expand-md bg-light">
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <i class="oi oi-caret-right"></i>
-              <span>Lista de Funcionários</span>
-            </li>
-          </ul>
-          <a
-            class="btn btn-primary btn-md"
-            th:href="@{/employees/register}"
-            role="button"
-          >
-            <span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
-            <span>Cadastrar Funcionários</span>
-          </a>
-        </div>
-      </nav>
+<head>
+  <meta charset="UTF-8" />
+</head>
 
-      <div class="container">
-        <p>
-          <i class="oi oi-magnifying-glass"></i><span></span>
-          <button
-            class="btn btn-primary"
-            type="button"
-            data-toggle="collapse"
-            data-target="#collapseNome"
-            aria-controls="collapseNome"
-          >
-            Nome
-          </button>
-          <button
-            class="btn btn-primary"
-            type="button"
-            data-toggle="collapse"
-            data-target="#collapseCargo"
-            aria-controls="collapseCargo"
-          >
-            Cargo
-          </button>
-          <button
-            class="btn btn-primary"
-            type="button"
-            data-toggle="collapse"
-            data-target="#collapseData"
-            aria-controls="collapseData"
-          >
-            Datas
-          </button>
-        </p>
-        <div class="row">
-          <div class="col">
-            <div class="collapse" id="collapseNome">
-              <nav class="navbar navbar-light bg-light">
-                <form
-                  class="form-inline"
-                  method="GET"
-                  th:action="@{/employees/search/name}"
-                >
-                  <input
-                    class="form-control mr-sm-2"
-                    type="search"
-                    placeholder="nome"
-                    aria-label="Search"
-                    th:name="name"
-                  />
-                  <button class="btn btn-outline-success my-2 my-sm-0">
-                    Search
-                  </button>
-                </form>
-              </nav>
-            </div>
+<body>
+  <section class="layout-content" layout:fragment="main-body">
+    <nav class="navbar navbar-expand-md bg-light">
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <i class="oi oi-caret-right"></i>
+            <span>Lista de Funcionários</span>
+          </li>
+        </ul>
+        <a class="btn btn-primary btn-md" th:href="@{/employees/register}" role="button">
+          <span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
+          <span>Cadastrar Funcionários</span>
+        </a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <p>
+        <i class="oi oi-magnifying-glass"></i><span></span>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseNome"
+          aria-controls="collapseNome">
+          Nome
+        </button>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCargo"
+          aria-controls="collapseCargo">
+          Cargo
+        </button>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseData"
+          aria-controls="collapseData">
+          Datas
+        </button>
+      </p>
+      <div class="row">
+        <div class="col">
+          <div class="collapse" id="collapseNome">
+            <nav class="navbar navbar-light bg-light">
+              <form class="form-inline" method="GET" th:action="@{/employees/search/name}">
+                <input class="form-control mr-sm-2" type="search" placeholder="nome" aria-label="Search"
+                  th:name="name" />
+                <button class="btn btn-outline-success my-2 my-sm-0">
+                  Search
+                </button>
+              </form>
+            </nav>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <div class="collapse" id="collapseCargo">
-              <nav class="navbar navbar-light bg-light">
-                <form
-                  class="form-inline"
-                  method="GET"
-                  th:action="@{/employees/search/role}"
-                >
-                  <select
-                    class="form-control mr-sm-2"
-                    th:name="id"
-                    aria-label="Search"
-                  >
-                    <option value="">Cargo</option>
-                    <option
-                      th:each="role : ${roles}"
-                      th:value="${role.id}"
-                      th:text="${role.name}"
-                    ></option>
-                  </select>
-                  <button class="btn btn-outline-success my-2 my-sm-0">
-                    Search
-                  </button>
-                </form>
-              </nav>
-            </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="collapse" id="collapseCargo">
+            <nav class="navbar navbar-light bg-light">
+              <form class="form-inline" method="GET" th:action="@{/employees/search/role}">
+                <select class="form-control mr-sm-2" th:name="id" aria-label="Search">
+                  <option value="">Cargo</option>
+                  <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
+                </select>
+                <button class="btn btn-outline-success my-2 my-sm-0">
+                  Search
+                </button>
+              </form>
+            </nav>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <div class="collapse" id="collapseData">
-              <nav class="navbar navbar-light bg-light">
-                <form
-                  class="form-inline"
-                  method="GET"
-                  th:action="@{/employees/search/date}"
-                >
-                  <input
-                    class="form-control mr-sm-2"
-                    type="date"
-                    aria-label="Search"
-                    th:name="admission"
-                  />
-                  <input
-                    class="form-control mr-sm-2"
-                    type="date"
-                    aria-label="Search"
-                    th:name="exit"
-                  />
-                  <button class="btn btn-outline-success my-2 my-sm-0">
-                    Search
-                  </button>
-                </form>
-              </nav>
-            </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="collapse" id="collapseData">
+            <nav class="navbar navbar-light bg-light">
+              <form class="form-inline" method="GET" th:action="@{/employees/search/date}">
+                <input class="form-control mr-sm-2" type="date" aria-label="Search" th:name="admission" />
+                <input class="form-control mr-sm-2" type="date" aria-label="Search" th:name="exit" />
+                <button class="btn btn-outline-success my-2 my-sm-0">
+                  Search
+                </button>
+              </form>
+            </nav>
           </div>
         </div>
+      </div>
 
-        <div class="table-responsive">
-          <div th:replace="~{fragments/alert}"></div>
+      <div class="table-responsive">
+        <div th:replace="~{fragments/alert}"></div>
 
-          <table class="table table-striped table-hover table-sm">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th th:text="#{table.employee.col.name}"></th>
-                <th th:text="#{table.employee.col.salary}"></th>
-                <th th:text="#{table.employee.col.department}"></th>
-                <th th:text="#{table.employee.col.role}"></th>
-                <th th:text="#{table.employee.col.address}"></th>
-                <th th:text="#{table.employee.col.admissionDate}"></th>
-                <th th:text="#{table.employee.col.exitDate}"></th>
-                <th th:text="#{table.employee.col.action}"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr th:each="emp : ${employees}">
-                <td th:text="${emp.id}">1</td>
-                <td th:text="${emp.name}">Jorge da Silva</td>
-                <td th:text="|R$ ${{emp.salary}}|">R$ 3.500,99</td>
-                <td th:text="${emp.role.department.name}">Recursos Humanos</td>
-                <td th:text="${emp.role.name}">Auxiliar de RH</td>
-                <td>
-                  <button
-                    type="button"
-                    class="btn btn-secondary btn-sm"
-                    data-container="body"
-                    data-toggle="popover"
-                    data-placement="top"
-                    th:attr="data-content=${#strings.concat(
+        <table class="table table-striped table-hover table-sm">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th th:text="#{table.employee.col.name}"></th>
+              <th th:text="#{table.employee.col.salary}"></th>
+              <th th:text="#{table.employee.col.department}"></th>
+              <th th:text="#{table.employee.col.role}"></th>
+              <th th:text="#{table.employee.col.address}"></th>
+              <th th:text="#{table.employee.col.admissionDate}"></th>
+              <th th:text="#{table.employee.col.exitDate}"></th>
+              <th th:text="#{table.employee.col.action}"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="emp : ${employees}">
+              <td th:text="${emp.id}">1</td>
+              <td th:text="${emp.name}">Jorge da Silva</td>
+              <td th:text="|R$ ${{emp.salary}}|">R$ 3.500,99</td>
+              <td th:text="${emp.role.department.name}">Recursos Humanos</td>
+              <td th:text="${emp.role.name}">Auxiliar de RH</td>
+              <td>
+                <button type="button" class="btn btn-secondary btn-sm" data-container="body" data-toggle="popover"
+                  data-placement="top" th:attr="data-content=${#strings.concat(
 						emp.address.street, ', ',
 						emp.address.number, ' ',
 						emp.address.complement, ' - ',
@@ -178,55 +120,32 @@
 						emp.address.city, ' - ',
 						emp.address.federativeUnit.acronym, ' - ',
 						emp.address.zipCode
-					)}"
-                  >
-                    <span
-                      class="oi oi-eye"
-                      title="Visualizar"
-                      aria-hidden="true"
-                    ></span>
-                  </button>
-                </td>
-                <td
-                  th:text="${#temporals.format(emp.admissionDate, 'dd/MM/yyyy')}"
-                >
-                  01/10/2014
-                </td>
-                <td th:text="${#temporals.format(emp.exitDate, 'dd/MM/yyyy')}">
-                  02/03/2015
-                </td>
-                <td colspan="2">
-                  <a
-                    class="btn btn-info btn-sm"
-                    th:href="@{/employees/update/{id} (id=${emp.id})}"
-                    role="button"
-                  >
-                    <span
-                      class="oi oi-brush"
-                      title="Editar"
-                      aria-hidden="true"
-                    ></span>
-                  </a>
-                  <button
-                    th:id="${#strings.concat('btn_employees/delete/', emp.id)}"
-                    type="button"
-                    class="btn btn-danger btn-sm"
-                    data-toggle="modal"
-                    data-target="#myModal"
-                  >
-                    <span
-                      class="oi oi-circle-x"
-                      title="Excluir"
-                      aria-hidden="true"
-                    ></span>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+					)}">
+                  <span class="oi oi-eye" title="Visualizar" aria-hidden="true"></span>
+                </button>
+              </td>
+              <td th:text="${#temporals.format(emp.admissionDate, 'dd/MM/yyyy')}">
+                01/10/2014
+              </td>
+              <td th:text="${#temporals.format(emp.exitDate, 'dd/MM/yyyy')}">
+                02/03/2015
+              </td>
+              <td colspan="2">
+                <a class="btn btn-info btn-sm" th:href="@{/employees/update/{id} (id=${emp.id})}" role="button">
+                  <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+                </a>
+                <button th:id="${#strings.concat('btn_employees/delete/', emp.id)}" type="button"
+                  class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">
+                  <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div th:replace="~{fragments/modal :: modal}"></div>
-    </section>
-  </body>
+    </div>
+    <div th:replace="~{fragments/modal :: modal}"></div>
+  </section>
+</body>
+
 </html>
